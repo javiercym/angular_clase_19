@@ -14,7 +14,4 @@ export class BuscadorComponent {
     alert(this.textoBuscar);
     this.enviardata.emit(this.textoBuscar)
   }
-  borrar(){
-
-  }
 }
