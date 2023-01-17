@@ -1,5 +1,5 @@
-import { Component,Input, OnInit } from '@angular/core';
-import { PokeapiResponse } from 'src/app/interface/pokeapi-response';
+import { Component,Input, OnInit, SimpleChanges } from '@angular/core';
+import { Pokemon } from 'src/app/interface/pokeapi-response';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -8,25 +8,20 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit{
-  @Input() datollego!: string;
+  textoBuscar!: string;
+  pokemon:Pokemon[]=[];
+  pagina=0;
 
-  input!:PokeapiResponse['results'];
-
-  constructor(private data:DataService){
-  }
+  constructor(private data:DataService){}
 
   ngOnInit(): void {
-    // this.data.GetAll().subscribe( data => console.log(data));
-
-    this.data.GetAll().subscribe( data => {
-      this.input = data.results;
-      console.log(this.input);
-    });
+    this.data.GetAll().subscribe(resp=>{
+      this.pokemon = resp;
+    })
   }
-  ngOnChanges() {
-    if (this.datollego) {
-        this.input = this.input.filter(item => item.name.toLowerCase().includes(this.datollego.toLowerCase()));
-    }
+  buscador(textoBuscar:string){
+    this.pagina = 0;
+    // console.log(textoBuscar)
+    this.textoBuscar = textoBuscar
+  }
  }
-
-}

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PagesComponent } from './pages.component';
-import { BuscadorComponent } from './buscador/buscador.component';
 import { CardComponent } from './card/card.component';
 import { FormsModule } from '@angular/forms';
+import { FiltroPipe } from '../pipes/filtro.pipe';
 
 
 
 @NgModule({
   declarations: [
     PagesComponent,
-    BuscadorComponent,
-    CardComponent
+    CardComponent,
+    FiltroPipe
   ],
   imports: [
     CommonModule,

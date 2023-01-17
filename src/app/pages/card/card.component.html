@@ -1,8 +1,23 @@
-<div id="rellenar" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3"> 
-    <div class="col" *ngFor="let item of input">
-        <div class="card shadow-sm">
-            <img class="img" src="https://play-lh.googleusercontent.com/wAWerkEu_g2_BMCl85WKqN2mxn0xW1O22nV6yJOayrMKu9pqtrLMn7S2Zd1xaykKm0g"> <br>
-            <h4 class="text-center">{{item.name}}</h4>
+
+<br>
+<div class="container">
+    <div class="row ss">
+        <form class="d-flex" role="search">
+            <input name="textoBuscar" class="form-control" type="text" placeholder="Buscar Pokemon" #txtBuscar (keyup)="buscador(txtBuscar.value)"/>
+        </form>
+    </div>
+</div>
+
+<br>
+<div class="container">
+    <div id="rellenar" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3"> 
+        <div class="col" *ngFor="let poke of pokemon | filtro:pagina:textoBuscar">
+            <div class="card">
+                <img class="img" [src]="poke.image" (error)="poke.image = 'https://play-lh.googleusercontent.com/wAWerkEu_g2_BMCl85WKqN2mxn0xW1O22nV6yJOayrMKu9pqtrLMn7S2Zd1xaykKm0g'">
+                <h4 class="text-center">{{poke.name}}</h4>
+                <h6>{{poke.linkId}}</h6>
+            </div>
         </div>
     </div>
 </div>
+<br>
